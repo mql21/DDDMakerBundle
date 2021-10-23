@@ -1,0 +1,50 @@
+parameters:
+  ddd_maker_bundle_config:
+    vendor: 'SomeCompany'
+    ddd_elements:
+      bounded-context:
+        path: 'src/'
+      module:
+        path: 'src/{bounded-context}/'
+      command:
+        namespace: '{vendor}\{bounded-context}\{module}\Application\Command'
+        path: 'src/{bounded-context}/{module}/Application/Command/'
+        implements: 'App\Shared\Domain\Bus\Command\Command'
+        suffix: 'Command'
+      command-handler:
+        namespace: '{vendor}\{bounded-context}\{module}\Application\Command'
+        path: 'src/{bounded-context}/{module}/Application/Command/'
+        implements: 'App\Shared\Domain\Bus\Command\CommandHandler'
+        suffix: 'CommandHandler'
+      query:
+        namespace: '{vendor}\{bounded-context}\{module}\Application\Query'
+        path: 'src/{bounded-context}/{module}/Application/Query/'
+        implements: 'App\Shared\Domain\Bus\Query\Query'
+        suffix: 'Query'
+      query-handler:
+        namespace: '{vendor}\{bounded-context}\{module}\Application\Query'
+        path: 'src/{bounded-context}/{module}/Application/Query/'
+        implements: 'App\Shared\Domain\Bus\Query\QueryHandler'
+        suffix: 'QueryHandler'
+      response:
+        namespace: '{vendor}\{bounded-context}\{module}\Application\Response'
+        path: 'src/{bounded-context}/{module}/Application/Response/'
+        suffix: 'Response'
+      domain-event:
+        namespace: '{vendor}\{bounded-context}\{module}\Domain\Event'
+        path: 'src/{bounded-context}/{module}/Domain/Event/'
+        extends: 'App\Shared\Domain\Bus\Event\DomainEvent'
+        suffix: 'DomainEvent'
+      event-subscriber:
+        namespace: '{vendor}\{bounded-context}\{module}\Application\EventSubscriber'
+        path: 'src/{bounded-context}/{module}/Application/EventSubscriber/'
+        implements: 'App\Shared\Domain\Bus\Event\DomainEventSubscriber'
+        suffix:
+      value-object:
+        namespace: '{vendor}\{bounded-context}\{module}\Domain\ValueObject'
+        path: 'src/{bounded-context}/{module}/Domain/ValueObject/'
+        suffix:
+      use-case:
+        namespace: '{vendor}\{bounded-context}\{module}\Application\UseCase'
+        path: 'src/{bounded-context}/{module}/Application/UseCase/'
+        suffix:

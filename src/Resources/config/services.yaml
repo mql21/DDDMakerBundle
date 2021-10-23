@@ -1,0 +1,51 @@
+imports:
+  - { resource: ddd_elements_config.yaml }
+
+services:
+  Mql21\DDDMakerBundle\ConfigManager\ConfigManager:
+    arguments: [ '%ddd_maker_bundle_config%' ]
+
+  Mql21\DDDMakerBundle\Locator\PathLocator:
+    arguments: [ '@Mql21\DDDMakerBundle\ConfigManager\ConfigManager' ]
+
+  Mql21\DDDMakerBundle\Locator\DirectoryLocator:
+    arguments: [ '@Mql21\DDDMakerBundle\Locator\PathLocator' ]
+
+  Mql21\DDDMakerBundle\Locator\BoundedContextModuleLocator:
+    arguments: [
+        '@Mql21\DDDMakerBundle\Locator\DirectoryLocator',
+        '@Mql21\DDDMakerBundle\Finder\Directory\BoundedContextFinder',
+        '@Mql21\DDDMakerBundle\Finder\Directory\ModuleFinder'
+    ]
+
+  Mql21\DDDMakerBundle\Generator\Builder\DDDClassBuilder:
+    arguments: [ '@Mql21\DDDMakerBundle\Locator\PathLocator', '@Mql21\DDDMakerBundle\ConfigManager\ConfigManager' ]
+
+  Mql21\DDDMakerBundle\Maker\Interaction\Question\DTOAttributeQuestioner: ~
+
+  Mql21\DDDMakerBundle\Finder\Directory\BoundedContextFinder:
+    arguments: [ '@Mql21\DDDMakerBundle\Locator\PathLocator' ]
+
+  Mql21\DDDMakerBundle\Finder\Directory\ModuleFinder:
+    arguments: [ '@Mql21\DDDMakerBundle\Locator\PathLocator' ]
+
+  Mql21\DDDMakerBundle\Finder\Class\CommandFinder:
+    arguments: [ '@Mql21\DDDMakerBundle\Locator\PathLocator', '@Mql21\DDDMakerBundle\ConfigManager\ConfigManager' ]
+
+  Mql21\DDDMakerBundle\Finder\Class\QueryFinder:
+    arguments: [ '@Mql21\DDDMakerBundle\Locator\PathLocator', '@Mql21\DDDMakerBundle\ConfigManager\ConfigManager' ]
+
+  Mql21\DDDMakerBundle\Finder\Class\ResponseFinder:
+    arguments: [ '@Mql21\DDDMakerBundle\Locator\PathLocator', '@Mql21\DDDMakerBundle\ConfigManager\ConfigManager' ]
+
+  Mql21\DDDMakerBundle\Finder\Class\DomainEventFinder:
+    arguments: [ '@Mql21\DDDMakerBundle\Locator\PathLocator', '@Mql21\DDDMakerBundle\ConfigManager\ConfigManager' ]
+
+  Mql21\DDDMakerBundle\Finder\Class\UseCaseFinder:
+    arguments: [ '@Mql21\DDDMakerBundle\Locator\PathLocator', '@Mql21\DDDMakerBundle\ConfigManager\ConfigManager' ]
+
+  Mql21\DDDMakerBundle\Renderer\HandlerRenderer: ~
+
+  Mql21\DDDMakerBundle\Renderer\UseCaseRenderer: ~
+
+  Mql21\DDDMakerBundle\Renderer\ValueObjectRenderer: ~
