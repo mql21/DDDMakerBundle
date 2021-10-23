@@ -10,11 +10,13 @@
         }
     ],
     "require": {
-        "php": "^7.1.3"
+        "php": ">=7.4",
+        "nette/php-generator": "^3.5",
+        "symfony/yaml": "5.2.*"
     },
     "autoload": {
         "psr-4": {
-            "Mql21\\DDDMakerBundle\\\\": "src/"
+            "Mql21\\DDDMakerBundle\\": "src/"
         }
     }
 }
